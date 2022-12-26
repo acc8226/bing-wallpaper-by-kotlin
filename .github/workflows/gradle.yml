@@ -1,0 +1,34 @@
+name: Java CI with Gradle
+
+on:
+  workflow_dispatch:
+  schedule:
+    # UTC -7 比 0 时区晚 7 个小时，需要到 UTC -7 的零点才执行，同时是北京时间 15 点
+    - cron:  '0 7 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up JAVA
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '11'
+        cache: 'gradle'
+    - run: chmod +x ./gradlew && ./gradlew run --no-daemon
+
+    - name: Commit files
+      run: |
+         git config user.email "acc8226@qq.com"
+         git config user.name "Github Action"
+         git pull
+         git add README* sources/ archives/
+         git commit -m "update by Github Action"
+    - name: Push changes
+      uses:  ad-m/github-push-action@master
+      with:
+         github_token: ${{ secrets.MY_GIT_TOKEN }}
+         branch: main
