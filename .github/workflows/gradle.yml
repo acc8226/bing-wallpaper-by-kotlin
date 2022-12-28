@@ -6,7 +6,7 @@ on:
     # UTC -7 比 0 时区晚 7 个小时，需要到 UTC -7 的零点才执行，同时是北京时间 15 点
     - cron:  '0 7 * * *'
 jobs:
-  gradle:
+  build:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
