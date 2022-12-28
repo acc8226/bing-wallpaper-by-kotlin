@@ -16,7 +16,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
-        java-version: '11'
+        java-version: '17'
         cache: 'gradle'
     - run: chmod +x ./gradlew && ./gradlew run --no-daemon
 
@@ -25,7 +25,7 @@ jobs:
          git config user.email "acc8226@qq.com"
          git config user.name "Github Action"
          git pull
-         git add gradlew app/ 
+         git add *
          git commit -m "update by Github Action"
     - name: Push changes
       uses:  ad-m/github-push-action@master

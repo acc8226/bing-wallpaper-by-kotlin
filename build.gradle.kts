@@ -14,17 +14,16 @@ repositories {
 dependencies {
     // Use the Kotlin JUnit 5 integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-
     // Use the JUnit 5 integration.
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
 
     // This dependency is used by the application.
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.14.0")
 }
 
 application {
     // Define the main class for the application.
-    mainClass.set("wallpaper.kotlin.AppKt")
+    mainClass.set("cn.qy.bingwallpaper.AppKt")
 }
 
 tasks.named<Test>("test") {
